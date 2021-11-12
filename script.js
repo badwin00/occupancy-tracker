@@ -15,7 +15,7 @@ const populate = () => {
   const arr = ['2021-11-06','2021-11-07', '2021-11-08', '2021-11-12'];
   arr.forEach((time) => {
     for (let i = 0; i < 24; i++) {
-      if (i == 13 && time == '2021-11-12') {
+      if (i == 18 && time == '2021-11-12') {
         break;
       }
       const key = time + '-'+`${i}`.padStart(2, "0");
@@ -26,8 +26,34 @@ const populate = () => {
   app.database().ref('Date').set(arr);
 };
 
-
 var ltx = document.getElementById('liveChart').getContext('2d');
+
+const map = {
+  0: '12:00 AM',
+  1: '1:00 AM',
+  2: '2:00 AM',
+  3: '3:00 AM',
+  4: '4:00 AM',
+  5: '5:00 AM',
+  6: '6:00 AM',
+  7: '7:00 AM',
+  8: '8:00 AM',
+  9: '9:00 AM',
+  10: '10:00 AM',
+  11: '11:00 AM',
+  12: '12:00 PM',
+  13: '1:00 PM',
+  14: '2:00 PM',
+  15: '3:00 PM',
+  16: '4:00 PM',
+  17: '5:00 PM',
+  18: '6:00 PM',
+  19: '7:00 PM',
+  20: '8:00 PM',
+  21: '9:00 PM',
+  22: '10:00 PM',
+  23: '11:00 PM'
+};
 
 const loadBar = () => {
   const labels = [];
@@ -39,14 +65,21 @@ const loadBar = () => {
     const month = time.getMonth()+1;
     const day = time.getDate();
     const year = time.getFullYear();
+    const hour = time.getHours();
 
     for (let i = 0; i < 24; i++) {
       const key = `${year}-${month}-${day}` + '-'+`${i}`.padStart(2, "0");
       if (key in obj) {
-        labels.push(`${i}`.padStart(2, "0"));
+        labels.push(map[i]);
         data.push(obj[key]);
       }
     }
+
+    const currentKey = `${year}-${month}-${day}-` + `${hour}`.padStart(2, "0");
+    console.log(currentKey);
+    const currentCount = !(currentKey in obj) ? 0 : obj[currentKey];
+   
+    var liveCount = document.getElementById('live-count').innerHTML = `<span class="dot blink"></span>LIVE COUNT: ${currentCount}`;
 
     var liveChart = new Chart(ltx, {
         type: 'bar',
@@ -93,7 +126,7 @@ const loadLine = () => {
       const data1 = [];
       const data2 = [];
       for (let i = 0; i < 24; i++) {
-        labels.push(i);
+        labels.push(map[i]);
         const key = s1.value + '-'+`${i}`.padStart(2, "0");
         if (key in time) {
           data1.push(time[key]);
