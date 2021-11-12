@@ -1,9 +1,9 @@
 .chart {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 60%;
   max-height: 500px;
-  max-width: 500px;
+  max-width: 800px;
   transform: translate(-50%, -50%);
 }
 
