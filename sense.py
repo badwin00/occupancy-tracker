@@ -53,10 +53,3 @@ while 1:
         if RUN_TESTS:
             test_up()
             test_occupancy()
-
-test_up()
-print("test_up PASSED!")
-test_occupancy()
-print("test_occupancy PASSED!")
-
-
