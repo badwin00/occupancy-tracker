@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import IPython
 import time
 import firebase_admin
+import unittest
+import requests
 from datetime import datetime
 from firebase_admin import credentials
 from firebase_admin import db
@@ -33,3 +35,15 @@ while 1:
         print("motion sensed!")
         report()
         blink()
+
+class websync_test(unittest.TestCase):
+    def test_occupancy(self):
+        # check if website's occupancy matches the occupancy measured locally on the pi
+        pass
+
+    def test_up(self):
+        # check if the website responds to a request properly
+        r = requests.get('https://badwin00.github.io/occupancy-tracker/')
+        self.assertEqual(r.status_code,200,"Unacceptable response code: " + r.status_code)
+
+
