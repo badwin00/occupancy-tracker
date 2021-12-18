@@ -4,10 +4,10 @@ A pipeline for collecting and visualizing physical occupancy of a space. Intende
 Watch the live count at: https://badwin00.github.io/occupancy-tracker/
 
 A motion sensor is hooked up to Raspberry Pi, when motion is detected the LED blinks and sends a message to our database to update the occupancy.
-![When the sensor detects motion, the blue LED turns on](https://badwin00.github.io/occupancy-tracker/motion_sensor.gif)
+![When the sensor detects motion, the blue LED turns on](https://badwin00.github.io/occupancy-tracker/motion_sensor2.gif)
 
 When the database receives the message, it updates the current occupancy on an hourly basis.
-![Google Firebase updates with the new current occupancy](https://badwin00.github.io/occupancy-tracker/db_update.gif)
+![Google Firebase updates with the new current occupancy](https://badwin00.github.io/occupancy-tracker/db-update.gif)
 
 When a user accesses the website, it queries the database for the latest information and presents it in a nice graph format.
 ![The latest information is pulled from the db and presented as a graph](https://badwin00.github.io/occupancy-tracker/web_update.gif)
